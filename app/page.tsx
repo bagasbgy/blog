@@ -11,7 +11,7 @@ export default function Home() {
       <div className="flex flex-row-reverse lg:flex-row flex-wrap justify-center">
         <div className="flex flex-col justify-center items-center w-full xl:min-w-sm xl:max-w-sm m-3 bg-slate-900 rounded-lg">
           <Image
-            className="-translate-y-12 rounded-full border-8 border-emerald-700"
+            className="-translate-y-12 rounded-full border-8 border-emerald-500"
             src="/portrait.jpeg"
             alt="R. Dimas Bagas Herlambang"
             width={175}
