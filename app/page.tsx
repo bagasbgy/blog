@@ -1,11 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
 
+import { getSortedPostsData, PostData } from "@/lib/posts"
 import GithubLogo from "@/public/brands/github.svg"
 import LinkedInLogo from "@/public/brands/linkedin.svg"
 import TwitterLogo from "@/public/brands/twitter.svg"
 
-export default function Home() {
+const Home = () => {
+  const postsData: Array<PostData> = getSortedPostsData();
+
   return (
     <main className="container min-h-screen mx-auto px-3 py-24">
       <div className="flex flex-row-reverse lg:flex-row flex-wrap justify-center">
@@ -57,3 +60,5 @@ export default function Home() {
     </main>
   )
 }
+
+export default Home
