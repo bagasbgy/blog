@@ -5,6 +5,7 @@ import { getSortedPostsData, PostData } from "@/lib/posts"
 import GithubLogo from "@/public/brands/github.svg"
 import LinkedInLogo from "@/public/brands/linkedin.svg"
 import TwitterLogo from "@/public/brands/twitter.svg"
+import { Icon } from "@/components/icons"
 
 const Home = () => {
   const postsData: Array<PostData> = getSortedPostsData()
@@ -21,12 +22,12 @@ const Home = () => {
             height={175}
           />
           <p className="-mt-5 text-xl text-emerald-500 font-semibold">R. Dimas Bagas Herlambang</p>
-          <p className="pt-3 text-md font-light">
-            <span className="material-icons-outlined text-lg mr-2 align-middle text-emerald-500" style={{ marginBottom: "0.175rem" }}>work</span>
+          <p className="pt-3 text-md font-light align-middle">
+            <Icon className="text-lg mr-2 text-emerald-500" iconName="work" style={{ marginBottom: "0.175rem" }} />
             Deloitte - Financial Risk Advisory
           </p>
-          <p className="pb-2 text-md font-light">
-            <span className="material-icons-outlined text-lg mr-1 align-middle text-emerald-500" style={{ marginBottom: "0.175rem" }}>location_on</span>
+          <p className="pb-2 text-md font-light align-middle">
+            <Icon className="text-lg mr-2 text-emerald-500" iconName="location_on" style={{ marginBottom: "0.175rem" }} />
             Jakarta, Indonesia
           </p>
           <div className="flex flex-row w-full justify-center items-center pt-2 pb-7">
