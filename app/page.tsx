@@ -7,7 +7,7 @@ import LinkedInLogo from "@/public/brands/linkedin.svg"
 import TwitterLogo from "@/public/brands/twitter.svg"
 
 const Home = () => {
-  const postsData: Array<PostData> = getSortedPostsData();
+  const postsData: Array<PostData> = getSortedPostsData()
 
   return (
     <main className="container min-h-screen mx-auto px-3 py-24">
