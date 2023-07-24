@@ -1,11 +1,11 @@
 import Image from "next/image"
 import Link from "next/link"
+import { BriefcaseIcon, MapPinIcon } from "@heroicons/react/24/outline"
 
 import { getSortedPostsData, PostData } from "@/lib/posts"
 import GithubLogo from "@/public/brands/github.svg"
 import LinkedInLogo from "@/public/brands/linkedin.svg"
 import TwitterLogo from "@/public/brands/twitter.svg"
-import { Icon } from "@/components/icons"
 
 const Home = () => {
   const postsData: Array<PostData> = getSortedPostsData()
@@ -21,15 +21,15 @@ const Home = () => {
             width={175}
             height={175}
           />
-          <p className="-mt-5 text-xl text-emerald-500 font-semibold">R. Dimas Bagas Herlambang</p>
-          <p className="pt-3 text-md font-light align-middle">
-            <Icon className="text-lg mr-2 text-emerald-500" iconName="work" style={{ marginBottom: "0.175rem" }} />
+          <span className="-mt-5 text-xl text-emerald-500 font-semibold">R. Dimas Bagas Herlambang</span>
+          <span className="inline-flex align-middle pt-3 text-md font-light">
+            <BriefcaseIcon className="h-6 w-6 mr-1 text-emerald-500" />
             Deloitte - Financial Risk Advisory
-          </p>
-          <p className="pb-2 text-md font-light align-middle">
-            <Icon className="text-lg mr-2 text-emerald-500" iconName="location_on" style={{ marginBottom: "0.175rem" }} />
+          </span>
+          <span className="inline-flex align-middle py-2 text-md font-light">
+            <MapPinIcon className="h-6 w-6 mr-1 text-emerald-500" />
             Jakarta, Indonesia
-          </p>
+          </span>
           <div className="flex flex-row w-full justify-center items-center pt-2 pb-7">
             <Link
               className="w-6 h-6 mx-1"
