@@ -9,26 +9,41 @@ export interface FrontMatter {
 }
 
 export interface PostData {
+    year: string
+    month: string
     id: string
     frontMatter: FrontMatter
+}
+
+export interface PostContent extends PostData {
+    contentHtml: string
 }
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
 export const getSortedPostsData = () => {
-    const fileNames = fs.readdirSync(postsDirectory)
+    const years = fs.readdirSync(postsDirectory)
+    const postsData: Array<PostData> = Array()
 
-    const postsData: Array<PostData> = fileNames.map((filename) => {
-        const id = filename.replace(/\.md$/, '')
-        const fullPath = path.join(postsDirectory, filename)
-        const fileContents = fs.readFileSync(fullPath, 'utf8')
-        const matterResult = matter(fileContents)
-        const frontMatter = matterResult.data
+    years.map((year) => {
+        const months = fs.readdirSync(path.join(postsDirectory, year))
+        months.map((month) => {
+            const filenames = fs.readdirSync(path.join(postsDirectory, year, month))
+            filenames.map((filename) => {
+                const id = filename.replace(/\.md$/, '')
+                const fullPath = path.join(postsDirectory, year, month, filename)
+                const fileContents = fs.readFileSync(fullPath, 'utf8')
+                const matterResult = matter(fileContents)
+                const frontMatter = matterResult.data
 
-        return {
-            id,
-            frontMatter,
-        }
+                postsData.push({
+                    year,
+                    month,
+                    id,
+                    frontMatter,
+                })
+            })
+        })
     })
 
     return postsData.sort((a, b) => {
@@ -40,8 +55,8 @@ export const getSortedPostsData = () => {
     })
 }
 
-export const getPostData = async (id: string) => {
-    const fullPath = path.join(postsDirectory, `${id}.md`)
+export const getPostContent = async (year: string, month: string, id: string) => {
+    const fullPath = path.join(postsDirectory, year, month, `${id}.md`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
     const matterResult = matter(fileContents)
@@ -53,6 +68,8 @@ export const getPostData = async (id: string) => {
     const contentHtml = processedContent.toString()
 
     return {
+        year,
+        month,
         id,
         contentHtml,
         frontMatter,

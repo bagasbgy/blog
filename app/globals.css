@@ -2,33 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'material-icons/iconfont/material-icons.css';
-
-:root {
-  --foreground-hex: #030712;
-  --background-hex: #f9fafb;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-hex: #f9fafb;
-    --background-hex: #030712;
-  }
-}
-
-body {
-  color: var(--foreground-hex);
-  background: var(--background-hex);
-}
-
 @layer base {
   a {
-    @apply text-emerald-500;
+    @apply text-primary;
     @apply ease-in-out;
     @apply duration-300;
   }
 
   a:hover {
-    @apply text-emerald-300;
+    @apply text-primary-focus;
+  }
+
+  .prose :where(p) {
+    @apply text-justify;
   }
 }

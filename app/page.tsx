@@ -1,36 +1,38 @@
 import Image from "next/image"
 import Link from "next/link"
 import { BriefcaseIcon, MapPinIcon } from "@heroicons/react/24/outline"
-
 import { getSortedPostsData, PostData } from "@/lib/posts"
 import GithubLogo from "@/public/brands/github.svg"
 import LinkedInLogo from "@/public/brands/linkedin.svg"
 import TwitterLogo from "@/public/brands/twitter.svg"
+import HomeTab from "@/components/HomeTab"
 
 const Home = () => {
   const postsData: Array<PostData> = getSortedPostsData()
 
   return (
-    <main className="container min-h-screen mx-auto px-3 py-24">
-      <div className="flex flex-row-reverse lg:flex-row flex-wrap justify-center">
-        <div className="flex flex-col justify-center items-center w-full xl:min-w-sm xl:max-w-sm m-3 bg-slate-900 rounded-lg">
+    <div className="flex flex-col lg:flex-row space-y-5 lg:space-y-0 lg:space-x-5">
+      <div className="card basis-full lg:basis-1/4 h-min bg-base-200 shadow-lg shadow-base-200">
+        <div className="card-body flex flex-col items-center">
           <Image
-            className="-translate-y-12 rounded-full border-8 border-emerald-500"
+            className="-translate-y-16 rounded-full border-8 border-primary"
             src="/portrait.jpeg"
             alt="R. Dimas Bagas Herlambang"
             width={175}
             height={175}
           />
-          <span className="-mt-5 text-xl text-emerald-500 font-semibold">R. Dimas Bagas Herlambang</span>
-          <span className="inline-flex align-middle pt-3 text-md font-light">
-            <BriefcaseIcon className="h-6 w-6 mr-1 text-emerald-500" />
-            Deloitte - Financial Risk Advisory
-          </span>
-          <span className="inline-flex align-middle py-2 text-md font-light">
-            <MapPinIcon className="h-6 w-6 mr-1 text-emerald-500" />
+          <div className="-mt-12 text-xl text-center text-primary font-semibold">
+            R. Dimas Bagas Herlambang
+          </div>
+          <div className="inline-flex flex-row text-md font-light items-center pt-2">
+            <BriefcaseIcon className="h-6 w-6 mr-1 text-primary" />
+            Risk Advisory
+          </div>
+          <div className="inline-flex flex-row text-md font-light items-center py-1">
+            <MapPinIcon className="h-6 w-6 mr-[2px] text-primary" />
             Jakarta, Indonesia
-          </span>
-          <div className="flex flex-row w-full justify-center items-center pt-2 pb-7">
+          </div>
+          <div className="flex flex-row w-full justify-center items-center pt-2">
             <Link
               className="w-6 h-6 mx-1"
               href="https://github.com/bagasbgy"
@@ -55,10 +57,13 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col items-center w-full xl:min-w-3xl xl:max-w-3xl m-3 bg-slate-900 rounded-lg">
+      </div>
+      <div className="card basis-full lg:basis-3/4 bg-base-200 shadow-lg shadow-base-200">
+        <div className="card-body flex flex-col">
+          <HomeTab postsData={postsData} />
         </div>
       </div>
-    </main>
+    </div>
   )
 }
 
