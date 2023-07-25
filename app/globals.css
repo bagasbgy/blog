@@ -16,4 +16,8 @@
   .prose :where(p) {
     @apply text-justify;
   }
+  .prose :where(pre) {
+    @apply bg-[#0d1117] !important;
+    @apply text-[#c9d1d9] !important;
+  }
 }

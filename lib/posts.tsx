@@ -1,8 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { remark } from 'remark'
-import html from 'remark-html'
 
 export interface FrontMatter {
     [key: string]: any
@@ -59,19 +57,13 @@ export const getPostContent = async (year: string, month: string, id: string) =>
     const fullPath = path.join(postsDirectory, year, month, `${id}.md`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
-    const matterResult = matter(fileContents)
-    const frontMatter = matterResult.data
-
-    const processedContent = await remark()
-        .use(html)
-        .process(matterResult.content)
-    const contentHtml = processedContent.toString()
+    const {data, content} = matter(fileContents)
 
     return {
         year,
         month,
         id,
-        contentHtml,
-        frontMatter,
+        frontMatter: data,
+        contentHtml: content,
     }
 }
