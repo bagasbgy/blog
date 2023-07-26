@@ -6,6 +6,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown"
 import Image from "next/image"
 import remarkUnwrapImages from "remark-unwrap-images"
 import rehypeHighlight from "rehype-highlight/lib"
+import { preprocessImageAlt } from "@/lib/image"
 
 interface Params {
     year: string
@@ -58,16 +59,17 @@ const Post = async ({ params }: Props) => {
                             const imgPropsPattern = / \{(\{.*\})\}/
                             const imgPropsMatch = props.alt ? props.alt.match(imgPropsPattern) : null
                             const imgProps = imgPropsMatch ? JSON.parse(imgPropsMatch[1]) : {}
-                            const alt = props.alt ? props.alt.replace(imgPropsPattern, '') : null
+                            const rawAlt = props.alt ? props.alt.replace(imgPropsPattern, '') : ''
+                            const alt = preprocessImageAlt(rawAlt)
                             return <figure className="flex flex-col">
                                 <Image
-                                    src={props.src || ''}
+                                    src={`/blog/${postContent.year}/${postContent.month}/${postContent.id}/${props.src}` || ''}
                                     alt={alt}
                                     width={768}
                                     height={576}
                                     {...imgProps}
                                 />
-                                <figcaption className="text-center">{alt}</figcaption>
+                                {alt && <figcaption className="text-center">{alt}</figcaption>}
                             </figure>
                         }
                     }}

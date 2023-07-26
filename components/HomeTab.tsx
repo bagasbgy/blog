@@ -26,7 +26,7 @@ const HomeTab = ({ postsData }: { postsData: Array<PostData> }) => {
                                         <div className="relative basis-1/4">
                                             <Image
                                                 className="rounded-lg object-none"
-                                                src={postData.data.thumbnail ? `blog/${postData.year}/${postData.month}/${postData.id}/${postData.data.thumbnail}` : ""}
+                                                src={postData.data.thumbnail ? `blog/${postData.year}/${postData.month}/${postData.id}/${postData.id}_files/${postData.data.thumbnail}` : ""}
                                                 alt={postData.data.title}
                                                 fill
                                             />

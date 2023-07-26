@@ -26,48 +26,50 @@ export const getSortedPostsData = () => {
     years.map((year) => {
         const months = fs.readdirSync(path.join(postsDirectory, year))
         months.map((month) => {
-            const templateRegExp = new RegExp("\.template\.md$", "g")
-            const notebookRegExp = new RegExp("\.ipynb$", "g")
+            const dirnames = fs.readdirSync(path.join(postsDirectory, year, month))
+            dirnames.map((dirname) => {
+                const id = dirname
+                const fullPath = path.join(postsDirectory, year, month, dirname, `${dirname}.md`)
+                const templatePath = path.join(postsDirectory, year, month, dirname, `${dirname}.template.md`)
 
-            let filenames = fs.readdirSync(path.join(postsDirectory, year, month))
-            let templates = filenames.filter((filename) => filename.match(templateRegExp))
-            const notebooks = filenames.filter((filename) => filename.match(notebookRegExp))
+                if (fs.existsSync(templatePath)) {
+                    const notebookPath = path.join(postsDirectory, year, month, dirname, `${dirname}.ipynb`)
+                    const templateContent = fs.readFileSync(templatePath, 'utf8')
+                    const { data } = matter(templateContent)
 
-            filenames = filenames.filter((filename) => !(templates.includes(filename) || notebooks.includes(filename)))
-            templates = templates.filter((filename) => !filenames.includes(filename.replace(/\.template\.md$/, ".md")))
+                    const tempPath = fullPath + '.temp'
+                    execSync(`conda run -n blog jupyter nbconvert --to markdown ${notebookPath}`)
+                    fs.copyFileSync(fullPath, tempPath)
+                    fs.copyFileSync(notebookPath, fullPath)
+                    fs.appendFileSync(fullPath, fs.readFileSync(tempPath))
+                    fs.rmSync(tempPath)
 
-            filenames.map((filename) => {
-                const id = filename.replace(/\.md$/, '')
-                const fullPath = path.join(postsDirectory, year, month, filename)
-                const fileContents = fs.readFileSync(fullPath, 'utf8')
-                const {data} = matter(fileContents)
+                    postsData.push({
+                        year,
+                        month,
+                        id,
+                        data,
+                    })
+                } else {
+                    const fileContents = fs.readFileSync(fullPath, 'utf8')
+                    const { data } = matter(fileContents)
 
-                postsData.push({
-                    year,
-                    month,
-                    id,
-                    data,
-                })
-            })
+                    postsData.push({
+                        year,
+                        month,
+                        id,
+                        data,
+                    })
+                }
 
-            templates.map((filename) => {
-                const id = filename.replace(/\.template\.md$/, '')
-                const mdFilename = filename.replace(/\.template\.md$/, ".md")
-                const notebook = filename.replace(/\.template\.md$/, ".ipynb")
-                const templatePath = path.join(postsDirectory, year, month, filename)
-                const fullPath = path.join(postsDirectory, year, month, mdFilename)
-                const templateContent = fs.readFileSync(templatePath, 'utf8')
-                const {data} = matter(templateContent)
-
-                fs.copyFileSync(templatePath, fullPath)
-                execSync(`conda run -n ${data.conda} jupyter nbconvert --to markdown ${path.join(postsDirectory, year, month, notebook)} --stdout >> ${fullPath}`)
-
-                postsData.push({
-                    year,
-                    month,
-                    id,
-                    data,
-                })
+                const filesDirectory = path.join(postsDirectory, year, month, dirname, `${dirname}_files`)
+                if (fs.existsSync(filesDirectory)) {
+                    const publicDirectory = path.join('public', 'blog', year, month, dirname, `${dirname}_files`)
+                    if (fs.existsSync(publicDirectory)) {
+                        fs.rmSync(publicDirectory, { recursive: true , force: true })
+                    }
+                    fs.cpSync(filesDirectory, publicDirectory, { recursive: true })
+                }
             })
         })
     })
@@ -82,7 +84,7 @@ export const getSortedPostsData = () => {
 }
 
 export const getPostData = async (year: string, month: string, id: string) => {
-    const fullPath = path.join(postsDirectory, year, month, `${id}.md`)
+    const fullPath = path.join(postsDirectory, year, month, id, `${id}.md`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const {data} = matter(fileContents)
 
@@ -95,18 +97,30 @@ export const getPostData = async (year: string, month: string, id: string) => {
 }
 
 export const getPostContent = async (year: string, month: string, id: string) => {
-    const fullPath = path.join(postsDirectory, year, month, `${id}.md`)
+    const fullPath = path.join(postsDirectory, year, month, id, `${id}.md`)
     if (process.env.NODE_ENV === "development") {
-        const templatePath = path.join(postsDirectory, year, month, `${id}.template.md`)
+        const templatePath = path.join(postsDirectory, year, month, id, `${id}.template.md`)
         if (fs.existsSync(templatePath)) {
+            const notebookPath = path.join(postsDirectory, year, month, id, `${id}.ipynb`)
+            const tempPath = fullPath + '.temp'
+            execSync(`conda run -n blog jupyter nbconvert --to markdown ${notebookPath}`)
+            fs.copyFileSync(fullPath, tempPath)
             fs.copyFileSync(templatePath, fullPath)
-            const postData = await getPostData(year, month, id)
-            execSync(`conda run -n ${postData.data.conda} jupyter nbconvert --to markdown ${path.join(postsDirectory, year, month, `${id}.ipynb`)} --stdout >> ${fullPath}`)
+            fs.appendFileSync(fullPath, fs.readFileSync(tempPath))
+            fs.rmSync(tempPath)
+
+            const filesDirectory = path.join(postsDirectory, year, month, id, `${id}_files`)
+            if (fs.existsSync(filesDirectory)) {
+                const publicDirectory = path.join('public', 'blog', year, month, id, `${id}_files`)
+                if (fs.existsSync(publicDirectory)) {
+                    fs.rmSync(publicDirectory, { recursive: true , force: true })
+                }
+                fs.cpSync(filesDirectory, publicDirectory, { recursive: true })
+            }
         }
     }
     const fileContents = fs.readFileSync(fullPath, 'utf8')
-
-    const {data, content} = matter(fileContents)
+    const { data, content } = matter(fileContents)
 
     return {
         year,
