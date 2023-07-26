@@ -42,8 +42,8 @@ const Post = async ({ params }: Props) => {
 
     return (
         <>
-            <div className="text-primary text-2xl lg:text-3xl font-bold mb-0">{postContent.frontMatter.title}</div>
-            <div className="text-base-content text-sm lg:text-base mt-1">
+            <div className="text-primary text-3xl font-bold mb-0">{postContent.frontMatter.title}</div>
+            <div className="text-base-content text-sm lg:text-base">
                 {postContent.frontMatter.author}
             </div>
             <div className="text-zinc-500 text-sm lg:text-base -mt-1">
@@ -53,17 +53,18 @@ const Post = async ({ params }: Props) => {
                 <ReactMarkdown
                     components={{
                         img: ({ ...props }) => {
-                            // TODO: add better argument parsing
-                            const substrings = props.alt ? props.alt.split('{{') : null
-                            // @ts-ignore
-                            const alt = substrings[0].trim()
-                            // @ts-ignore
-                            const width = substrings[1] ? substrings[1].match(/(?<=w:\s?)\d+/g)[0] : 768
-                            // @ts-ignore
-                            const height = substrings[1] ? substrings[1].match(/(?<=h:\s?)\d+/g)[0] : 576
+                            const imgPropsPattern = / \{(\{.*\})\}/
+                            const imgPropsMatch = props.alt ? props.alt.match(imgPropsPattern) : null
+                            const imgProps = imgPropsMatch ? JSON.parse(imgPropsMatch[1]) : {}
+                            const alt = props.alt ? props.alt.replace(imgPropsPattern, '') : null
                             return <figure className="flex flex-col">
-                                {/* @ts-ignore */}
-                                <Image src={props.src} alt={alt} width={width} height={height} />
+                                <Image
+                                    src={props.src || ''}
+                                    alt={alt}
+                                    width={768}
+                                    height={576}
+                                    {...imgProps}
+                                />
                                 <figcaption className="text-center">{alt}</figcaption>
                             </figure>
                         }
@@ -74,8 +75,8 @@ const Post = async ({ params }: Props) => {
                     {postContent.contentHtml}
                 </ReactMarkdown>
             </article>
-            <Link className="inline-flex flex-row items-center" href="/">
-                <ArrowLeftIcon className="h-4 w-4" />
+            <Link className="inline-flex flex-row items-center text-lg font-bold" href="/">
+                <ArrowLeftIcon className="h-5 w-5" />
                 &nbsp;Back to Home
             </Link>
         </>
