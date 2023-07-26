@@ -2,6 +2,7 @@
 
 import { toDate, toHumanDate } from "@/lib/date"
 import { PostData } from "@/lib/posts"
+import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -18,19 +19,31 @@ const HomeTab = ({ postsData }: { postsData: Array<PostData> }) => {
                 tabKey == "1" ?
                     <div>
                         {postsData.map((postData, idx) => {
-                            const date = toHumanDate(toDate(postData.frontMatter.date))
+                            const date = toHumanDate(toDate(postData.data.date))
                             return <div key={idx}>
-                                <div className="border-b border-zinc-700 pb-4 mb-4">
-                                    <Link href={`/blog/${postData.year}/${postData.month}/${postData.id}`}>
-                                        <div className="text-2xl font-bold mb-0">{postData.frontMatter.title}</div>
-                                    </Link>
-                                    <div className="text-base-content text-sm lg:text-base mt-1">
-                                        {postData.frontMatter.author}
+                                <Link href={`/blog/${postData.year}/${postData.month}/${postData.id}`}>
+                                    <div className="flex flex-row space-x-5 border-b border-zinc-700 pb-4 mb-4">
+                                        <div className="relative basis-1/4">
+                                            <Image
+                                                className="rounded-lg object-none"
+                                                src={postData.data.thumbnail ? `blog/${postData.year}/${postData.month}/${postData.id}/${postData.data.thumbnail}` : ""}
+                                                alt={postData.data.title}
+                                                fill
+                                            />
+                                        </div>
+                                        <div className="basis-3/4">
+                                                <div className="text-2xl font-bold line-clamp-1 break-all mb-0">
+                                                    {postData.data.title}
+                                                </div>
+                                            <div className="text-base-content text-sm lg:text-base mt-1">
+                                                {postData.data.author}
+                                            </div>
+                                            <div className="text-zinc-500 text-sm lg:text-base">
+                                                {date}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="text-zinc-500 text-sm lg:text-base">
-                                        {date}
-                                    </div>
-                                </div>
+                                </Link>
                             </div>
                         })}
                     </div>

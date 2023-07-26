@@ -32,19 +32,21 @@ export const generateMetadata = async ({ params }: Props) => {
     const postContent: PostData = await getPostData(params.year, params.month, params.id)
 
     return {
-        title: postContent.frontMatter.title
+        title: postContent.data.title
     }
 }
 
 const Post = async ({ params }: Props) => {
     const postContent: PostContent = await getPostContent(params.year, params.month, params.id)
-    const date = toHumanDate(toDate(postContent.frontMatter.date))
+    const date = toHumanDate(toDate(postContent.data.date))
 
     return (
         <>
-            <div className="text-primary text-3xl font-bold mb-0">{postContent.frontMatter.title}</div>
+            <div className="text-primary text-3xl font-bold break-all mb-0">
+                {postContent.data.title}
+            </div>
             <div className="text-base-content text-sm lg:text-base">
-                {postContent.frontMatter.author}
+                {postContent.data.author}
             </div>
             <div className="text-zinc-500 text-sm lg:text-base -mt-1">
                 {date}
@@ -72,7 +74,7 @@ const Post = async ({ params }: Props) => {
                     remarkPlugins={[remarkUnwrapImages]}
                     rehypePlugins={[rehypeHighlight]}
                 >
-                    {postContent.contentHtml}
+                    {postContent.content}
                 </ReactMarkdown>
             </article>
             <Link className="inline-flex flex-row items-center text-lg font-bold" href="/">
