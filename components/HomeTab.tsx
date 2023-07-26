@@ -20,7 +20,7 @@ const HomeTab = ({ postsData }: { postsData: Array<PostData> }) => {
                         {postsData.map((postData, idx) => {
                             const date = toHumanDate(toDate(postData.frontMatter.date))
                             return <div key={idx}>
-                                <div className="border-b border-zinc-700 pb-4">
+                                <div className="border-b border-zinc-700 pb-4 mb-4">
                                     <Link href={`/blog/${postData.year}/${postData.month}/${postData.id}`}>
                                         <div className="text-2xl lg:text-3xl font-bold mb-0">{postData.frontMatter.title}</div>
                                     </Link>

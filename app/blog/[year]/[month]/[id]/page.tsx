@@ -1,6 +1,6 @@
 import { toDate, toHumanDate } from "@/lib/date"
 import { ArrowLeftIcon } from "@heroicons/react/20/solid"
-import { PostContent, getPostContent, getSortedPostsData } from "@/lib/posts"
+import { PostContent, PostData, getPostContent, getPostData, getSortedPostsData } from "@/lib/posts"
 import Link from "next/link"
 import { ReactMarkdown } from "react-markdown/lib/react-markdown"
 import Image from "next/image"
@@ -29,7 +29,7 @@ export const generateStaticParams = async () => {
 }
 
 export const generateMetadata = async ({ params }: Props) => {
-    const postContent: PostContent = await getPostContent(params.year, params.month, params.id)
+    const postContent: PostData = await getPostData(params.year, params.month, params.id)
 
     return {
         title: postContent.frontMatter.title
