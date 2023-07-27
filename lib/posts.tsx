@@ -38,11 +38,13 @@ export const getSortedPostsData = () => {
                     const { data } = matter(templateContent)
 
                     const tempPath = fullPath + '.temp'
-                    execSync(`conda run -n blog jupyter nbconvert --to markdown ${notebookPath}`)
-                    fs.copyFileSync(fullPath, tempPath)
-                    fs.copyFileSync(notebookPath, fullPath)
-                    fs.appendFileSync(fullPath, fs.readFileSync(tempPath))
-                    fs.rmSync(tempPath)
+                    if (process.env.NODE_ENV === "development") {
+                        execSync(`conda run -n blog jupyter nbconvert --to markdown ${notebookPath}`)
+                        fs.copyFileSync(fullPath, tempPath)
+                        fs.copyFileSync(templatePath, fullPath)
+                        fs.appendFileSync(fullPath, fs.readFileSync(tempPath))
+                        fs.rmSync(tempPath)
+                    }
 
                     postsData.push({
                         year,
