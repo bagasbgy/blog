@@ -9,7 +9,7 @@ thumbnail: "cover.png"
 
 This is one of my (many) blogging attempts and the second one uses markdown as the writing medium. I used [`blogdown`](https://pkgs.rstudio.com/blogdown/) in my previous blog since I mainly use R for my data science-related tasks. After migrating to Python and React, I decided to use [Next.js](https://nextjs.org/) for its Static Site Generator (SSG) feature, which (after some hacking) could seamlessly support markdown and Jupyter Notebook as the page source&#8212;will definitely share my experience in developing this blog soon! 😎
 
-Anyway, I will post some data science-related articles in this blog, especially if I found some topics that are fun to code with. So to end this first post, here's some quick code to generate some images that are similar to this post cover, which uses LoRA weights from [Cyberpunk Scene v1.0 by Tooimage](https://civitai.com/models/58594/cyberpunk-scene-v10-by-tooimage):
+Anyway, I will post some data science-related articles in this blog, especially if I found some topics that are fun to code with. So to end this first post, here's some quick code to generate some images that are similar to this post cover, which uses [Stable Diffusion v1.5](https://huggingface.co/runwayml/stable-diffusion-v1-5) and LoRA weights from [Cyberpunk Scene v1.0 by Tooimage](https://civitai.com/models/58594/cyberpunk-scene-v10-by-tooimage):
 
 
 ```python
