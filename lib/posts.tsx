@@ -37,8 +37,8 @@ export const getSortedPostsData = () => {
                     const templateContent = fs.readFileSync(templatePath, 'utf8')
                     const { data } = matter(templateContent)
 
-                    const tempPath = fullPath + '.temp'
                     if (process.env.NODE_ENV === "development") {
+                        const tempPath = fullPath + '.temp'
                         execSync(`conda run -n blog jupyter nbconvert --to markdown ${notebookPath}`)
                         fs.copyFileSync(fullPath, tempPath)
                         fs.copyFileSync(templatePath, fullPath)
