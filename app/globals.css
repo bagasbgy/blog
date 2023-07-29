@@ -16,10 +16,20 @@
   .prose :where(p) {
     @apply text-justify;
     @apply leading-normal;
+
+    code {
+      @apply bg-slate-900;
+      @apply rounded-sm;
+    }
+
   }
 
   .prose :where(pre) {
-    @apply bg-[#0d1117] !important;
+    @apply bg-slate-900 !important;
     @apply text-[#c9d1d9] !important;
+  }
+
+  .prose :where(p) {
+    @apply bg-none;
   }
 }
