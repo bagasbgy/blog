@@ -55,6 +55,16 @@ const Post = async ({ params }: Props) => {
             <article className="prose min-w-full max-w-full py-7">
                 <ReactMarkdown
                     components={{
+                        a: ({...props}) => {
+                            return (
+                                <Link
+                                    href={props.href || ''}
+                                    target="_blank"
+                                >
+                                    {props.children}
+                                </Link>
+                            )
+                        },
                         img: ({ ...props }) => {
                             const imgPropsPattern = / \{(\{.*\})\}/
                             const imgPropsMatch = props.alt ? props.alt.match(imgPropsPattern) : null
