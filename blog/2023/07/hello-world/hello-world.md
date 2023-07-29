@@ -1,7 +1,7 @@
 ---
 title: "Hello World!"
 author: "R. Dimas Bagas Herlambang"
-date: "2023-07-26 16:14:59+0700"
+date: "2023-07-29 13:11:04+0700"
 thumbnail: "cover.png"
 ---
 
@@ -9,7 +9,7 @@ thumbnail: "cover.png"
 
 This is one of my (many) blogging attempts and the second one uses markdown as the writing medium. I used [`blogdown`](https://pkgs.rstudio.com/blogdown/) in my previous blog since I mainly use R for my data science-related tasks. After migrating to Python and React, I decided to use [Next.js](https://nextjs.org/) for its Static Site Generator (SSG) feature, which (after some hacking) could seamlessly support markdown and Jupyter Notebook as the page source&#8212;will definitely share my experience in developing this blog soon! 😎
 
-Anyway, I will post some data science-related articles in this blog, especially if I found some topics that are fun to code with. So here's some quick code to generate some images that are similar to this post cover:
+Anyway, I will post some data science-related articles in this blog, especially if I found some topics that are fun to code with. So to end this first post, here's some quick code to generate some images that are similar to this post cover:
 
 
 ```python
