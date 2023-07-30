@@ -14,8 +14,8 @@
   }
 
   .hljs {
-    @apply text-base-content;
-    @apply bg-zinc-900;
+    @apply text-inherit;
+    @apply bg-inherit;
   }
 
   code {
