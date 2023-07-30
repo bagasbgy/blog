@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://bagasbgy.dev
+
+# Sitemaps
+Sitemap: https://bagasbgy.dev/sitemap.xml
