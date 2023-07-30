@@ -17,7 +17,6 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <html lang="en" data-theme="forest">
       <body className={inter.className}>
         <main className="container min-h-screen mx-auto px-3 py-24">
-          {/* TODO: Move GA Creds to .env */}
           <Script src="https://www.googletagmanager.com/gtag/js?id=G-7W8VN823ZZ" />
           <Script id="google-analytics">
             {`
