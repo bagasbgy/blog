@@ -27,5 +27,9 @@
 
   .prose :where(pre) {
     @apply bg-neutral-800 !important;
+
+    code {
+      @apply bg-none;
+    }
   }
 }
