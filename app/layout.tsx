@@ -1,5 +1,5 @@
 import { getCopyrightYear } from '@/lib/date'
-import './globals.css'
+import '@/public/globals.css'
 import "@/public/github-dark.css"
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
