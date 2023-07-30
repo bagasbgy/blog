@@ -32,13 +32,13 @@ const HomeTab = ({ postsData }: { postsData: Array<PostData> }) => {
                                             />
                                         </div>
                                         <div className="basis-3/4">
-                                                <div className="text-2xl font-bold line-clamp-1 break-all mb-0">
+                                                <div className="text-lg lg:text-2xl font-bold line-clamp-1 break-all mb-0">
                                                     {postData.data.title}
                                                 </div>
-                                            <div className="text-base-content text-sm lg:text-base mt-1">
+                                            <div className="text-base-content text-xs lg:text-base lg:mt-1">
                                                 {postData.data.author}
                                             </div>
-                                            <div className="text-zinc-500 text-sm lg:text-base">
+                                            <div className="text-zinc-500 text-xs lg:text-base">
                                                 {date}
                                             </div>
                                         </div>

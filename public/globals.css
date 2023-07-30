@@ -7,29 +7,55 @@
     @apply text-primary;
     @apply ease-in-out;
     @apply duration-300;
+
+    &:hover {
+      @apply text-primary-focus;
+    }
   }
 
-  a:hover {
-    @apply text-primary-focus;
+  .hljs {
+    @apply text-base-content;
+    @apply bg-zinc-900;
+  }
+
+  code {
+    @apply bg-zinc-900;
+    @apply border;
+    @apply border-solid;
+    @apply border-zinc-700;
+    @apply rounded-sm !important;
   }
 
   .prose :where(p) {
     @apply text-justify;
     @apply leading-normal;
-    @apply bg-none;
+    @apply text-base-content;
+    @apply font-normal;
+  }
 
-    code {
-      @apply bg-neutral-800;
-      @apply rounded-sm;
+  .prose :where(strong) {
+    @apply text-inherit !important;
+    @apply font-bold !important;
+  }
+
+  .prose :where(a) {
+    @apply text-primary !important;
+    @apply font-normal !important;
+
+    &:hover {
+      @apply text-primary-focus !important;
     }
-
   }
 
   .prose :where(pre) {
-    @apply bg-neutral-800 !important;
+    @apply text-base-content !important;
+    @apply bg-zinc-900 !important;
+    @apply shadow-[inset_0_10px_15px_-3px];
+    @apply shadow-base-200;
+    @apply py-6 !important;
+  }
 
-    code {
-      @apply bg-none;
-    }
+  .prose :where(code) {
+    @apply font-normal !important;
   }
 }

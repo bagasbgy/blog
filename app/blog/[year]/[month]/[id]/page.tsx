@@ -43,16 +43,16 @@ const Post = async ({ params }: Props) => {
 
     return (
         <>
-            <div className="text-primary text-3xl font-bold break-all mb-0">
+            <div className="text-primary text-3xl lg:text-4xl font-bold break-all mb-0">
                 {postContent.data.title}
             </div>
-            <div className="text-base-content text-sm lg:text-base">
+            <div className="text-base-content text-sm lg:text-lg">
                 {postContent.data.author}
             </div>
-            <div className="text-zinc-500 text-sm lg:text-base -mt-1">
+            <div className="text-zinc-500 text-sm lg:text-lg -mt-1">
                 {date}
             </div>
-            <article className="prose min-w-full max-w-full py-7">
+            <article className="prose lg:prose-lg min-w-full max-w-full py-7">
                 <ReactMarkdown
                     components={{
                         a: ({...props}) => {

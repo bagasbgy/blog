@@ -16,7 +16,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" data-theme="forest">
       <body className={inter.className}>
-        <main className="container min-h-screen mx-auto px-3 py-24">
+        <main className="container min-h-screen mx-auto px-3 py-12 lg:py-24">
           <Script src="https://www.googletagmanager.com/gtag/js?id=G-7W8VN823ZZ" />
           <Script id="google-analytics">
             {`
