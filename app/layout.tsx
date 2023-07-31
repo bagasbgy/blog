@@ -1,6 +1,6 @@
 import { getCopyrightYear } from '@/lib/date'
 import '@/public/globals.css'
-import "@/public/github-dark.css"
+import "@/public/github-dark-bagasbgy.dev.css"
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'

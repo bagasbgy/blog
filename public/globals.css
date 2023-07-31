@@ -13,11 +13,6 @@
     }
   }
 
-  .hljs {
-    @apply text-inherit;
-    @apply bg-inherit;
-  }
-
   code {
     @apply bg-zinc-900;
     @apply border;

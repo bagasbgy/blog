@@ -53,6 +53,20 @@ const Post = async ({ params }: Props) => {
                 {date}
             </div>
             <article className="prose lg:prose-lg min-w-full max-w-full py-7">
+                {
+                    postContent.data.cover &&
+                    <figure className="flex flex-col">
+                        <Image
+                            src={postContent.data.cover ? `/blog/${postContent.year}/${postContent.month}/${postContent.id}/${postContent.data.cover.src}` : ''}
+                            alt={postContent.data.cover.alt}
+                            width={postContent.data.cover.width || 768}
+                            height={postContent.data.cover.height || 576}
+                        />
+                        <figcaption className="text-center">
+                            {postContent.data.cover.alt}
+                        </figcaption>
+                    </figure>
+                }
                 <ReactMarkdown
                     components={{
                         a: ({...props}) => {
@@ -73,7 +87,7 @@ const Post = async ({ params }: Props) => {
                             const alt = preprocessImageAlt(rawAlt)
                             return <figure className="flex flex-col">
                                 <Image
-                                    src={`/blog/${postContent.year}/${postContent.month}/${postContent.id}/${props.src}` || ''}
+                                    src={`/blog/${postContent.year}/${postContent.month}/${postContent.id}/${props.src}`}
                                     alt={alt}
                                     width={768}
                                     height={576}

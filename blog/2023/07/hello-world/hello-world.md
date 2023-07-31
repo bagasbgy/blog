@@ -2,10 +2,12 @@
 title: "Hello World!"
 author: "R. Dimas Bagas Herlambang"
 date: "2023-07-29 13:11:04+0700"
-thumbnail: "cover.png"
+cover:
+    src: "hello-world_files/cover.png"
+    alt: "Indonesian cyberpunk street market, generated using Stable Diffusion v1.5 and Cyberpunk Scene LoRA."
+    width: 768
+    height: 576
 ---
-
-![Indonesian cyberpunk street market, generated using Stable Diffusion v1.5 and Cyberpunk Scene LoRA.](hello-world_files/cover.png)
 
 This is one of my (many) blogging attempts and the second one uses markdown as the writing medium. I used [`blogdown`](https://pkgs.rstudio.com/blogdown/) in my previous blog since I mainly use R for my data science-related tasks. After migrating to Python and React, I decided to use [Next.js](https://nextjs.org/) for its Static Site Generator (SSG) feature, which (after some hacking) could seamlessly support markdown and Jupyter Notebook as the page source&#8212;will definitely share my experience in developing this blog soon! 😎
 
@@ -67,7 +69,7 @@ image_grid(inference.images, rows=1, cols=3)
 
 
     
-![png](hello-world_files/hello-world_3_1.png)
+![png](hello-world_files/hello-world_2_1.png)
     
 
 
