@@ -13,11 +13,11 @@ Anyway, I will post some data science-related articles in this blog, especially 
 
 
 ```python
-from PIL import Image
 import torch
 from diffusers import DiffusionPipeline
 from diffusers import EulerAncestralDiscreteScheduler
 from diffusers.utils import logging
+from PIL import Image
 
 logging.set_verbosity_error()
 
