@@ -31,6 +31,7 @@ export const getSortedPostsData = () => {
                 const id = dirname
                 const fullPath = path.join(postsDirectory, year, month, dirname, `${dirname}.md`)
                 const templatePath = path.join(postsDirectory, year, month, dirname, `${dirname}.template.md`)
+                const filesDirectory = path.join(postsDirectory, year, month, dirname, `${dirname}_files`)
 
                 if (fs.existsSync(templatePath)) {
                     const notebookPath = path.join(postsDirectory, year, month, dirname, `${dirname}.ipynb`)
@@ -38,7 +39,6 @@ export const getSortedPostsData = () => {
                     const { data } = matter(templateContent)
 
                     if (process.env.NODE_ENV === "development") {
-                        const filesDirectory = path.join(postsDirectory, year, month, dirname, `${dirname}_files`)
                         if (fs.existsSync(filesDirectory)) {
                             fs.rmSync(filesDirectory, { recursive: true , force: true })
                         }
@@ -48,14 +48,6 @@ export const getSortedPostsData = () => {
                         fs.copyFileSync(templatePath, fullPath)
                         fs.appendFileSync(fullPath, fs.readFileSync(tempPath))
                         fs.rmSync(tempPath)
-
-                        if (fs.existsSync(filesDirectory)) {
-                            const publicDirectory = path.join('public', 'blog', year, month, dirname, `${dirname}_files`)
-                            if (fs.existsSync(publicDirectory)) {
-                                fs.rmSync(publicDirectory, { recursive: true , force: true })
-                            }
-                            fs.cpSync(filesDirectory, publicDirectory, { recursive: true })
-                        }
                     }
 
                     postsData.push({
@@ -74,6 +66,14 @@ export const getSortedPostsData = () => {
                         id,
                         data,
                     })
+                }
+
+                if (fs.existsSync(filesDirectory)) {
+                    const publicDirectory = path.join('public', 'blog', year, month, dirname, `${dirname}_files`)
+                    if (fs.existsSync(publicDirectory)) {
+                        fs.rmSync(publicDirectory, { recursive: true , force: true })
+                    }
+                    fs.cpSync(filesDirectory, publicDirectory, { recursive: true })
                 }
 
                 const assetsDirectory = path.join(postsDirectory, year, month, dirname, `${dirname}_assets`)
