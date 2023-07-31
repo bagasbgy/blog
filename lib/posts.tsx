@@ -38,6 +38,7 @@ export const getSortedPostsData = () => {
                     const { data } = matter(templateContent)
 
                     if (process.env.NODE_ENV === "development") {
+                        // TODO: Remove file dir before convert
                         const tempPath = fullPath + '.temp'
                         execSync(`conda run -n blog jupyter nbconvert --to markdown ${notebookPath}`)
                         fs.copyFileSync(fullPath, tempPath)
@@ -64,6 +65,8 @@ export const getSortedPostsData = () => {
                     })
                 }
 
+                // TODO: Move file dir copy logic to notebook scope
+                // TODO: Add asset dir logic that apply to both
                 const filesDirectory = path.join(postsDirectory, year, month, dirname, `${dirname}_files`)
                 if (fs.existsSync(filesDirectory)) {
                     const publicDirectory = path.join('public', 'blog', year, month, dirname, `${dirname}_files`)
