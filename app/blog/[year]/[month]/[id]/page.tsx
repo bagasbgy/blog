@@ -7,6 +7,7 @@ import Image from "next/image"
 import remarkUnwrapImages from "remark-unwrap-images"
 import rehypeHighlight from "rehype-highlight/lib"
 import { preprocessImageAlt } from "@/lib/image"
+import ShareButtons from "@/lib/share"
 
 interface Params {
     year: string
@@ -43,14 +44,22 @@ const Post = async ({ params }: Props) => {
 
     return (
         <>
-            <div className="text-primary text-3xl lg:text-4xl font-bold break-all mb-0">
-                {postContent.data.title}
+            <div className="border-b border-zinc-600 pb-5 mb-5">
+                <div className="text-primary text-3xl lg:text-4xl font-bold break-all">
+                    {postContent.data.title}
+                </div>
+                <div className="text-base-content text-sm lg:text-lg mt-1">
+                    {postContent.data.author}
+                </div>
+                <div className="text-zinc-500 text-sm lg:text-lg -mt-1">
+                    {date}
+                </div>
             </div>
-            <div className="text-base-content text-sm lg:text-lg">
-                {postContent.data.author}
-            </div>
-            <div className="text-zinc-500 text-sm lg:text-lg -mt-1">
-                {date}
+            <div className="flex flex-row space-x-1">
+                <ShareButtons
+                    path={`${params.year}/${params.month}/${params.id}`}
+                    title={postContent.data.title}
+                />
             </div>
             <article className="prose lg:prose-lg min-w-full max-w-full py-7">
                 {
@@ -69,7 +78,7 @@ const Post = async ({ params }: Props) => {
                 }
                 <ReactMarkdown
                     components={{
-                        a: ({...props}) => {
+                        a: ({ ...props }) => {
                             return (
                                 <Link
                                     href={props.href || ''}

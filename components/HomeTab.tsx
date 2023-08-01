@@ -23,12 +23,12 @@ const BlogTab = ({ postsData }: { postsData: Array<PostData> }) => {
                             />
                         </div>
                         <div className="">
-                                <div className="text-lg lg:text-2xl font-bold line-clamp-1 break-all mb-0">
-                                    {postData.data.title}
-                                </div>
-                                <div className="text-base-content text-xs lg:text-base lg:mt-1">
-                                    {postData.data.author}
-                                </div>
+                            <div className="text-lg lg:text-2xl font-bold line-clamp-1 break-all mb-0">
+                                {postData.data.title}
+                            </div>
+                            <div className="text-base-content text-xs lg:text-base lg:mt-1">
+                                {postData.data.author}
+                            </div>
                             <div className="text-zinc-500 text-xs lg:text-base">
                                 {date}
                             </div>
