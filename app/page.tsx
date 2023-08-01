@@ -24,11 +24,11 @@ const Home = () => {
           <div className="-mt-12 text-xl text-center text-primary font-semibold">
             R. Dimas Bagas Herlambang
           </div>
-          <div className="inline-flex flex-row text-md font-light items-center pt-2">
+          <div className="inline-flex flex-row text-md font-light items-center pt-1">
             <BriefcaseIcon className="h-6 w-6 mr-1 text-primary" />
             Risk Advisory
           </div>
-          <div className="inline-flex flex-row text-md font-light items-center py-1">
+          <div className="inline-flex flex-row text-md font-light items-center pb-1">
             <MapPinIcon className="h-6 w-6 mr-[2px] text-primary" />
             Jakarta, Indonesia
           </div>
