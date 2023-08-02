@@ -1,10 +1,7 @@
 import Image from "next/image"
-import Link from "next/link"
-import { BriefcaseIcon, MapPinIcon } from "@heroicons/react/24/outline"
+import { BriefcaseIcon, MapPinIcon } from "@heroicons/react/20/solid"
 import { getSortedPostsData, PostData } from "@/lib/posts"
-import GithubLogo from "@/public/brands/github.svg"
-import LinkedInLogo from "@/public/brands/linkedin.svg"
-import TwitterLogo from "@/public/brands/twitter.svg"
+import { SocialIcon } from "react-social-icons"
 import HomeTab from "@/components/HomeTab"
 
 const Home = () => {
@@ -33,28 +30,24 @@ const Home = () => {
             Jakarta, Indonesia
           </div>
           <div className="flex flex-row w-full justify-center items-center pt-2">
-            <Link
-              className="w-6 h-6 mx-1"
-              href="https://github.com/bagasbgy"
-              target="_blank"
-            >
-              <GithubLogo />
-            </Link>
-            <Link
-              className="w-6 h-6 mx-1"
-              href="https://www.linkedin.com/in/dimasbagash/"
-              target="_blank"
-            >
-              <LinkedInLogo />
-            </Link>
-            <Link
-              className="w-6 h-6 mx-1"
-              href="https://twitter.com/bagasbgy"
-              target="_blank"
-              style={{ paddingTop: "3px" }}
-            >
-              <TwitterLogo />
-            </Link>
+            <SocialIcon
+              className="w-6 h-6 mx-0.5"
+              url='https://github.com/bagasbgy'
+              fgColor="currentColor"
+              bgColor="inherit"
+            />
+            <SocialIcon
+              className="w-6 h-6 mx-0.5"
+              url="https://www.linkedin.com/in/dimasbagash/"
+              fgColor="currentColor"
+              bgColor="inherit"
+            />
+            <SocialIcon
+              className="w-6 h-6 mx-0.5"
+              url="https://twitter.com/bagasbgy"
+              fgColor="currentColor"
+              bgColor="inherit"
+            />
           </div>
         </div>
       </div>
