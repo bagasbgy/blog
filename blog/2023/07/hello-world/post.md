@@ -4,7 +4,7 @@ author: "R. Dimas Bagas Herlambang"
 date: "2023-07-29T13:11:04+07:00"
 lastmod: "2023-08-02T13:28:59+07:00"
 cover:
-    src: "hello-world_assets/cover.png"
+    src: "post_assets/cover.png"
     alt: "Indonesian cyberpunk street market, generated using Stable Diffusion v1.5 and Cyberpunk Scene LoRA."
     width: 768
     height: 576
@@ -69,7 +69,7 @@ image_grid(inference.images, rows=1, cols=3)
 
 
     
-![png](hello-world_files/hello-world_2_1.png)
+![png](post_files/post_2_1.png)
     
 
 

@@ -6,7 +6,7 @@ const config = {
     siteUrl: 'https://bagasbgy.dev',
     transform: (config, url) => {
         if (url.startsWith('/blog/')) {
-            const fileContents = fs.readFileSync(`.${url}/${url.split('/').at(-1)}.md`, 'utf8')
+            const fileContents = fs.readFileSync(`.${url}/post.md`, 'utf8')
             const { data } = matter(fileContents)
             return {
                 loc: url,
