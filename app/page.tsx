@@ -31,22 +31,22 @@ const Home = () => {
           </div>
           <div className="flex flex-row w-full justify-center items-center pt-2">
             <SocialIcon
-              className="w-6 h-6 mx-0.5"
+              className="mx-0.5"
               url='https://github.com/bagasbgy'
               fgColor="currentColor"
-              bgColor="inherit"
+              bgColor="transparent"
             />
             <SocialIcon
-              className="w-6 h-6 mx-0.5"
+              className="mx-0.5"
               url="https://www.linkedin.com/in/dimasbagash/"
               fgColor="currentColor"
-              bgColor="inherit"
+              bgColor="transparent"
             />
             <SocialIcon
-              className="w-6 h-6 mx-0.5"
+              className="mx-0.5"
               url="https://twitter.com/bagasbgy"
               fgColor="currentColor"
-              bgColor="inherit"
+              bgColor="transparent"
             />
           </div>
         </div>

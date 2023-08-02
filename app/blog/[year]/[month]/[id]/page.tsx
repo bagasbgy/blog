@@ -34,7 +34,8 @@ export const generateMetadata = async ({ params }: Props) => {
     const postContent: PostData = await getPostData(params.year, params.month, params.id)
 
     return {
-        title: postContent.data.title
+        title: `Blog | ${postContent.data.title}`,
+        description: postContent.data.title,
     }
 }
 
@@ -51,11 +52,11 @@ const Post = async ({ params }: Props) => {
                 <div className="text-base-content text-sm lg:text-lg mt-1">
                     {postContent.data.author}
                 </div>
-                <div className="text-zinc-500 text-sm lg:text-lg -mt-1">
+                <div className="text-zinc-500 text-sm lg:text-lg">
                     {date}
                 </div>
             </div>
-            <div className="flex flex-row space-x-1">
+            <div className="flex flex-row space-x-1 -mt-[6px]">
                 <ShareButtons
                     path={`${params.year}/${params.month}/${params.id}`}
                     title={postContent.data.title}

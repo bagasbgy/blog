@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    @apply bg-zinc-800;
+  }
+
   a {
     @apply text-primary;
     @apply ease-in-out;

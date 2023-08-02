@@ -10,8 +10,8 @@ import Loading from './loading'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Bagasbgy\'s blog',
-  description: 'Bagasbgy\'s blog',
+  title: 'BagasBgy\'s blog',
+  description: 'Home',
 }
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
