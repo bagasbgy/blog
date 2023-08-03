@@ -34,7 +34,7 @@ export const generateMetadata = async ({ params }: Props) => {
     const postContent: PostData = await getPostData(params.year, params.month, params.id)
 
     return {
-        title: `Blog | ${postContent.data.title}`,
+        title: `BagasBgy | ${postContent.data.title}`,
         description: postContent.data.title,
     }
 }
