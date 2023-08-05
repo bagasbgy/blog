@@ -33,18 +33,21 @@ const Home = () => {
             <SocialIcon
               className="mx-0.5"
               url='https://github.com/bagasbgy'
+              target='_blank'
               fgColor="currentColor"
               bgColor="transparent"
             />
             <SocialIcon
               className="mx-0.5"
               url="https://www.linkedin.com/in/dimasbagash/"
+              target='_blank'
               fgColor="currentColor"
               bgColor="transparent"
             />
             <SocialIcon
               className="mx-0.5"
               url="https://twitter.com/bagasbgy"
+              target='_blank'
               fgColor="currentColor"
               bgColor="transparent"
             />

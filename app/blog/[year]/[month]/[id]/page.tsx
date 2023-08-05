@@ -1,5 +1,4 @@
 import { toDate, toHumanDate } from "@/lib/date"
-import { ArrowLeftIcon } from "@heroicons/react/20/solid"
 import { PostContent, PostData, getPostContent, getPostData, getSortedPostsData } from "@/lib/posts"
 import Link from "next/link"
 import { ReactMarkdown } from "react-markdown/lib/react-markdown"
@@ -56,13 +55,14 @@ const Post = async ({ params }: Props) => {
                     {date}
                 </div>
             </div>
-            <div className="flex flex-row space-x-1 -mt-[6px]">
+            <div className="flex flex-row space-x-1 -mt-[6px] items-center">
+                <div className="text-base font-bold">Share this post:</div>
                 <ShareButtons
                     path={`${params.year}/${params.month}/${params.id}`}
                     title={postContent.data.title}
                 />
             </div>
-            <article className="prose lg:prose-lg min-w-full max-w-full py-7">
+            <article className="prose lg:prose-lg min-w-full max-w-full pt-7">
                 {
                     postContent.data.cover &&
                     <figure className="flex flex-col">
@@ -113,10 +113,6 @@ const Post = async ({ params }: Props) => {
                     {postContent.content}
                 </ReactMarkdown>
             </article>
-            <Link className="inline-flex flex-row items-center text-lg font-bold" href="/">
-                <ArrowLeftIcon className="h-5 w-5" />
-                &nbsp;Back to Home
-            </Link>
         </>
     )
 }

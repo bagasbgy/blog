@@ -1,7 +1,6 @@
 import dayjs, { Dayjs } from "dayjs"
 
-export const getCopyrightYear = () => {
-    const startYear = 2023
+export const getCurrentYearRange = (startYear = 2023) => {
     const currentYear = dayjs().year()
     if (startYear == currentYear) {
         return startYear
